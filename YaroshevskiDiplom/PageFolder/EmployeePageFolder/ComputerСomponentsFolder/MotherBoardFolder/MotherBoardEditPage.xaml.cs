@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public MotherBoardEditPage(MotherBoard motherboard)
         {
             InitializeComponent();
-            originalMotherBoard = DBEntities.GetContext().MotherBoard
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalMotherBoard = DBEntities.GetContext().MotherBoard
                 .FirstOrDefault(u => u.IdMotherBoard == motherboard.IdMotherBoard);
             DataContext = motherboard;
-            this.originalMotherBoard.IdMotherBoard = originalMotherBoard.IdMotherBoard;
+            this.originalMotherBoard.IdMotherBoard = motherboard.IdMotherBoard;
             SerialTB.Text = saveSerial = motherboard.SerialNumberMotherBoard;
         }
 
@@ -71,6 +72,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.MotherBoardFolder.MotherBoardListPage());
         }
     }
 }

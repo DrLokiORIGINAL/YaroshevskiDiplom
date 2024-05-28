@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.WebCam
         public WebCameraEditPage(WebCamera webCamera)
         {
             InitializeComponent();
-            originalWebCamera = DBEntities.GetContext().WebCamera
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalWebCamera = DBEntities.GetContext().WebCamera
                 .FirstOrDefault(u => u.IdWebCamera == webCamera.IdWebCamera);
             DataContext = webCamera;
-            this.originalWebCamera.IdWebCamera = originalWebCamera.IdWebCamera;
+            this.originalWebCamera.IdWebCamera = webCamera.IdWebCamera;
             SerialTB.Text = saveSerial = webCamera.SerialNumberWebCamera;
         }
 
@@ -71,6 +72,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.WebCam
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.WebCameraFolder.WebCameraListPage());
         }
     }
 }

@@ -77,5 +77,10 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Printe
                 }
             }
         }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.PrinterFolder.PrinterListPage());
+        }
     }
 }

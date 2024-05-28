@@ -63,8 +63,18 @@ Grid.Row="0"/>
          VerticalContentAlignment="Center"
          Click="SaveBtn_Click" 
          Grid.ColumnSpan="2"
-         Grid.Row="8"
-         Margin="228 10 228 10"/>
+         Grid.Row="7"
+         Margin="228,50,228,50" Grid.RowSpan="2"/>
+
+            <materialDesign:PackIcon x:Name="Back"
+             Kind="ArrowBack"
+             Style="{StaticResource MenuIcon}"
+             Margin="5 10 10 10"
+             MouseLeftButtonDown="Back_MouseLeftButtonDown"
+             Height="50"
+             Width="50"
+             VerticalAlignment="Center"/>
+
         </Grid>
     </Border>
 </Page>

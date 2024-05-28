@@ -54,6 +54,14 @@ namespace YaroshevskiDiplom.WindowFolder
                         LoginTB.Focus();
                         return;
                     }
+
+                    else if (user.LoginUser != LoginTB.Text)
+                    {
+                        MBClass.ErrorMB("Пользователь не найден");
+                        LoginTB.Focus();
+                        return;
+                    }
+
                     if (user.PasswordUser != PasswordPB.Password)
                     {
                         MBClass.ErrorMB("Введен неправильный пароль");

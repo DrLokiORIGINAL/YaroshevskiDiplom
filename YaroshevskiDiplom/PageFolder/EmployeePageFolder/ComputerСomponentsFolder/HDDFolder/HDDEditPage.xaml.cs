@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public HDDEditPage(HDD hdd)
         {
             InitializeComponent();
-            originalHDD = DBEntities.GetContext().HDD
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalHDD = DBEntities.GetContext().HDD
                 .FirstOrDefault(u => u.IdHDD == hdd.IdHDD);
             DataContext = hdd;
-            this.originalHDD.IdHDD = originalHDD.IdHDD;
+            this.originalHDD.IdHDD = hdd.IdHDD;
             StorageCb.ItemsSource = DBEntities.GetContext()
                 .DigitalStorageCapacityHDD.ToList();
             SerialTB.Text = saveSerial = hdd.SerialNumberHDD;
@@ -75,6 +76,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.HDDFolder.HDDListPage());
         }
     }
 }

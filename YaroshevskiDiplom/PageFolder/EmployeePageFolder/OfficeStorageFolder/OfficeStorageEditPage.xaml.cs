@@ -24,14 +24,15 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
     /// </summary>
     public partial class OfficeStorageEditPage : Page
     {
-        private OfficeStorage originalStorage;
+        private OfficeStorage OriginalStorage;
         public OfficeStorageEditPage(OfficeStorage officestorage)
         {
             InitializeComponent();
-            originalStorage = DBEntities.GetContext().OfficeStorage
+            DBEntities.nullContext();
+            DBEntities.nullContext(); OriginalStorage = DBEntities.GetContext().OfficeStorage
                 .FirstOrDefault(u => u.IdOfficeStorage == officestorage.IdOfficeStorage);
             DataContext = officestorage;
-            this.originalStorage.IdOfficeStorage = originalStorage.IdOfficeStorage;
+            this.OriginalStorage.IdOfficeStorage = officestorage.IdOfficeStorage;
             ComputerCb.ItemsSource = DBEntities.GetContext()
                 .Computer.ToList();
             StaffCb.ItemsSource = DBEntities.GetContext()
@@ -92,29 +93,29 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
             {
                 try
                 {
-                    originalStorage = DBEntities.GetContext().OfficeStorage
-                        .FirstOrDefault(u => u.IdOfficeStorage == originalStorage.IdOfficeStorage);
-                    originalStorage.IdComputer = Int32.Parse(
+                    OriginalStorage = DBEntities.GetContext().OfficeStorage
+                        .FirstOrDefault(u => u.IdOfficeStorage == OriginalStorage.IdOfficeStorage);
+                    OriginalStorage.IdComputer = Int32.Parse(
                         ComputerCb.SelectedValue.ToString());
-                    originalStorage.IdStaff = Int32.Parse(
+                    OriginalStorage.IdStaff = Int32.Parse(
                         StaffCb.SelectedValue.ToString());
-                    originalStorage.IdKeyboard = Int32.Parse(
+                    OriginalStorage.IdKeyboard = Int32.Parse(
                         KeyboardCb.SelectedValue.ToString());
-                    originalStorage.IdComputerMouse = Int32.Parse(
+                    OriginalStorage.IdComputerMouse = Int32.Parse(
                         ComputerMouseCb.SelectedValue.ToString());
-                    originalStorage.IdScanner = Int32.Parse(
+                    OriginalStorage.IdScanner = Int32.Parse(
                         ScannerCb.SelectedValue.ToString());
-                    originalStorage.IdMicrophone = Int32.Parse(
+                    OriginalStorage.IdMicrophone = Int32.Parse(
                         MicrophoneCb.SelectedValue.ToString());
-                    originalStorage.IdWebCamera = Int32.Parse(
+                    OriginalStorage.IdWebCamera = Int32.Parse(
                         WebCameraCb.SelectedValue.ToString());
-                    originalStorage.IdMonitor = Int32.Parse(
+                    OriginalStorage.IdMonitor = Int32.Parse(
                         MonitorCb.SelectedValue.ToString());
-                    originalStorage.IdPrinter = Int32.Parse(
+                    OriginalStorage.IdPrinter = Int32.Parse(
                         PrinterCb.SelectedValue.ToString());
-                    originalStorage.IdHeadphones = Int32.Parse(
+                    OriginalStorage.IdHeadphones = Int32.Parse(
                         HeadphonesCb.SelectedValue.ToString());
-                    originalStorage.IdGarniture = Int32.Parse(
+                    OriginalStorage.IdGarniture = Int32.Parse(
                         GarnitureCb.SelectedValue.ToString());
                     DBEntities.GetContext().SaveChanges();
                     MBClass.InformationMB("Данные успешно отредактированы");
@@ -126,6 +127,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.OfficeStorageFolder.OfficeStorageListPage());
         }
     }
 }

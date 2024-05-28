@@ -30,10 +30,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public SSDEditPage(SSD ssd)
         {
             InitializeComponent();
-            originalSSD = DBEntities.GetContext().SSD
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalSSD = DBEntities.GetContext().SSD
                 .FirstOrDefault(u => u.IdSSD == ssd.IdSSD);
-            DataContext = originalSSD;
-            this.originalSSD.IdSSD = originalSSD.IdSSD;
+            DataContext = ssd;
+            this.originalSSD.IdSSD = ssd.IdSSD;
             StorageCb.ItemsSource = DBEntities.GetContext()
                 .DigitalStorageCapacitySSD.ToList();
             SeriesTB.Text = saveSerial = ssd.SerialNumberSSD;
@@ -76,6 +77,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     MBClass.ErrorMB(ex);
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.SSDFolder.SSDListPage());
         }
     }
 }

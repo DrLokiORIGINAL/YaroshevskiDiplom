@@ -509,6 +509,12 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="ResourceFolder\ImageFolder\SearchIcon.png" />
+    <Resource Include="ResourceFolder\ImageFolder\ComputerIcon.png" />
+    <Resource Include="ResourceFolder\ImageFolder\StaffIcon.png" />
+    <Resource Include="ResourceFolder\ImageFolder\WorkSpaceIcon.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Logout.png" />
+    <Resource Include="ResourceFolder\ImageFolder\ListAdmIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="PageFolder\AdministratorPageFolder\AdministratorAddPage.xaml">

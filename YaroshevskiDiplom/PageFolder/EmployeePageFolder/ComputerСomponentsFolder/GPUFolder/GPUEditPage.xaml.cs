@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public GPUEditPage(GPU gpu)
         {
             InitializeComponent();
-            originalGPU = DBEntities.GetContext().GPU
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalGPU = DBEntities.GetContext().GPU
                 .FirstOrDefault(u => u.IdGPU == gpu.IdGPU);
             DataContext = gpu;
-            this.originalGPU.IdGPU = originalGPU.IdGPU;
+            this.originalGPU.IdGPU = gpu.IdGPU;
             SerialTB.Text = saveSerial = gpu.SerialNumberGPU;
         }
 
@@ -70,6 +71,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.GPUFolder.GPUListPage());
         }
     }
 }

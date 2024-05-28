@@ -36,6 +36,10 @@
                                  VerticalAlignment="Center"
                                  MouseLeftButtonDown="Plus_MouseLeftButtonDown"/>
 
+        <Image Source="/ResourceFolder/ImageFolder/SearchIcon.png"
+               Height="20"
+               Width="20" Margin="121,22,4,22"/>
+
         <TextBox x:Name="SearchTb"
              Style="{DynamicResource Search}"
              TextChanged="SearchTb_TextChanged"
@@ -55,6 +59,7 @@
                         BorderThickness="2">
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="Auto"/>
@@ -66,14 +71,13 @@
                            Visibility="Collapsed"
                            Margin="0, 0, 0, 0"
                            FontSize="15"
-                           Foreground="LightGray"/>
+                           Foreground="LightGray"
+                                       Grid.Column="2"/>
 
                                 <ScrollViewer x:Name="PART_ContentHost"
-                                  Grid.ColumnSpan="3"
-                                  Margin="0, 0, 0, 0"
                                   Focusable="False"
                                   HorizontalScrollBarVisibility="Hidden"
-                                  VerticalScrollBarVisibility="Hidden"/>
+                                  VerticalScrollBarVisibility="Hidden" Grid.Column="2"/>
 
                             </Grid>
                         </Border>

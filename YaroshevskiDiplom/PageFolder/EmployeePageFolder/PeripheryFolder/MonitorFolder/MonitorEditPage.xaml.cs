@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Monito
         public MonitorEditPage(Monitor monitor)
         {
             InitializeComponent();
-            originalMonitor = DBEntities.GetContext().Monitor
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalMonitor = DBEntities.GetContext().Monitor
                 .FirstOrDefault(u => u.IdMonitor == monitor.IdMonitor);
             DataContext = monitor;
-            this.originalMonitor.IdMonitor = originalMonitor.IdMonitor;
+            this.originalMonitor.IdMonitor = monitor.IdMonitor;
             SerialTB.Text = saveSerial = monitor.SerialNumberMonitor;
         }
 
@@ -71,6 +72,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Monito
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.MonitorFolder.MonitorListPage());
         }
     }
 }

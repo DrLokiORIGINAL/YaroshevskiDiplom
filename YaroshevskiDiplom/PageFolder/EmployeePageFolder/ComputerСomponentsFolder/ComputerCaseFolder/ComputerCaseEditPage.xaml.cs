@@ -28,7 +28,8 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public ComputerCaseEditPage(ComputerCase computercase)
         {
             InitializeComponent();
-            originalComputerCase = DBEntities.GetContext().ComputerCase
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalComputerCase = DBEntities.GetContext().ComputerCase
                 .FirstOrDefault(u => u.IdComputerCase == computercase.IdComputerCase);
             DataContext = computercase;
             this.originalComputerCase.IdComputerCase = originalComputerCase.IdComputerCase;
@@ -70,6 +71,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.ComputerCaseFolder.ComputerCaseListPage());
         }
     }
 }

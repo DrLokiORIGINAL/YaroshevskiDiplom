@@ -37,7 +37,7 @@ namespace YaroshevskiDiplom.WindowFolder.EmployeeWindowFolder
                 this.BeginAnimation(Window.HeightProperty, null);
                 this.BeginAnimation(Window.WidthProperty, null);
                 this.BeginAnimation(Window.OpacityProperty, null);
-                this.Height = 600;
+                this.Height = 750;
                 this.Width = 1000;
                 this.Opacity = 1;
             }
@@ -74,6 +74,15 @@ namespace YaroshevskiDiplom.WindowFolder.EmployeeWindowFolder
         private void ListPer_Click(object sender, RoutedEventArgs e)
         {
             MaiFrame.Navigate(new OfficeStorageListPage());
+        }
+
+        private void ChangeUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (MBClass.QestionMB("Вы действительно хотите выйти из аккаунта?"))
+            {
+                new AuthorizationWindow().Show();
+                Close();
+            }
         }
     }
 }

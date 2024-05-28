@@ -37,7 +37,7 @@ namespace YaroshevskiDiplom.WindowFolder.DirectorWindowFolder
                 this.BeginAnimation(Window.HeightProperty, null);
                 this.BeginAnimation(Window.WidthProperty, null);
                 this.BeginAnimation(Window.OpacityProperty, null);
-                this.Height = 600;
+                this.Height = 750;
                 this.Width = 1000;
                 this.Opacity = 1;
             }
@@ -79,6 +79,15 @@ namespace YaroshevskiDiplom.WindowFolder.DirectorWindowFolder
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void ChangeUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (MBClass.QestionMB("Вы действительно хотите выйти из аккаунта?"))
+            {
+                new AuthorizationWindow().Show();
+                Close();
+            }
         }
     }
 }

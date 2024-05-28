@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public RAMEditPage(RAM ram)
         {
             InitializeComponent();
-            originalRAM = DBEntities.GetContext().RAM
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalRAM = DBEntities.GetContext().RAM
                 .FirstOrDefault(u => u.IdRAM == ram.IdRAM);
-            DataContext = originalRAM;
-            this.originalRAM.IdRAM = originalRAM.IdRAM;
+            DataContext = ram;
+            this.originalRAM.IdRAM = ram.IdRAM;
             TypeRAMCb.ItemsSource = DBEntities.GetContext()
                 .TypeOfRAM.ToList();
             SeriesRAMTB.Text = saveSerial = ram.SerialNumberRAM;
@@ -74,6 +75,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.RAMFolder.RAMListPage());
         }
     }
 }

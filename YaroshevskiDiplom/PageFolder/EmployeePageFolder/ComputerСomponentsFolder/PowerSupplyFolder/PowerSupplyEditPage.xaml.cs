@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public PowerSupplyEditPage(PowerSupply powersupply)
         {
             InitializeComponent();
-            originalPowerSupply = DBEntities.GetContext().PowerSupply
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalPowerSupply = DBEntities.GetContext().PowerSupply
                 .FirstOrDefault(u => u.IdPowerSupply == powersupply.IdPowerSupply);
             DataContext = powersupply;
-            this.originalPowerSupply.IdPowerSupply = originalPowerSupply.IdPowerSupply;
+            this.originalPowerSupply.IdPowerSupply = powersupply.IdPowerSupply;
             WattageCb.ItemsSource = DBEntities.GetContext()
                 .Wattage.ToList();
             SerialTB.Text = saveSerial = powersupply.SerialNumberPowerSupply;
@@ -74,6 +75,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.PowerSupplyFolder.PowerSupplyListPage());
         }
     }
 }

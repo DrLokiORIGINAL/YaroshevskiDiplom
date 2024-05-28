@@ -29,10 +29,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Keyboa
         public KeyboardEditPage(Keyboard keyboard)
         {
             InitializeComponent();
-            originalKeyboard = DBEntities.GetContext().Keyboard
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalKeyboard = DBEntities.GetContext().Keyboard
                 .FirstOrDefault(u => u.IdKeyboard == keyboard.IdKeyboard);
             DataContext = keyboard;
-            this.originalKeyboard.IdKeyboard = originalKeyboard.IdKeyboard;
+            this.originalKeyboard.IdKeyboard = keyboard.IdKeyboard;
             SerialTB.Text = saveSerial = keyboard.SerialNumberKeyboard;
         }
 
@@ -72,6 +73,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Keyboa
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.KeyboardFolder.KeyboardListPage());
         }
     }
 }

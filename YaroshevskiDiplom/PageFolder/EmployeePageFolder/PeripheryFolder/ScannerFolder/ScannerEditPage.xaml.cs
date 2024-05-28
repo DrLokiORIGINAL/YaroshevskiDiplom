@@ -29,10 +29,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Scanne
         public ScannerEditPage(Scanner scanner)
         {
             InitializeComponent();
-            originalScanner = DBEntities.GetContext().Scanner
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalScanner = DBEntities.GetContext().Scanner
                 .FirstOrDefault(u => u.IdScanner == scanner.IdScanner);
             DataContext = scanner;
-            this.originalScanner.IdScanner = originalScanner.IdScanner;
+            this.originalScanner.IdScanner = scanner.IdScanner;
             SerialTB.Text = saveSerial = scanner.SerialNumberScanner;
         }
 
@@ -72,6 +73,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Scanne
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.ScannerFolder.ScannerListPage());
         }
     }
 }

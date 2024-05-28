@@ -48,9 +48,46 @@
 
             <Button x:Name="ListAdm"
                     Style="{StaticResource MenuButton}"
-                    Margin="15,316,865,219"
-                    Click="ListAdm_Click"
-                    Content="Список&#xD;&#xA;пользователей"/>
+                    Margin="10,158,865,387"
+                    Click="ListAdm_Click">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="-46,-22,-50,-22">
+                        <Image Height="23" 
+                               Source="/ResourceFolder/ImageFolder/ListAdmIcon.png" 
+                               />
+                        <TextBlock Text="Спиcок пользователей"
+                               TextWrapping="Wrap" 
+                               Width="85"
+                               FontFamily="Arial"
+                               FontSize="12" 
+                                   Height="26"
+                                   Margin="1 10 10 10"
+                               />
+                    </StackPanel>
+                </Grid>
+            </Button>
+
+            <Button x:Name="ChangeUser"
+        Style="{StaticResource MenuButton}"
+        Margin="10,535,865,10"
+        Click="ChangeUser_Click">
+                <Grid>
+                    <StackPanel Orientation="Horizontal"
+                                Height="48"
+                                Width="119" Margin="-6,-14,-24,-15">
+                        <Image Height="20"
+                               Source="/ResourceFolder/ImageFolder/Logout.png"/>
+                        <TextBlock Text="Сменить пользователя"
+                   TextWrapping="Wrap" 
+                   Width="85"
+                   FontFamily="Arial"
+                   FontSize="12" 
+                       Height="26"
+                       Margin="3 10 10 10"/>
+                    </StackPanel>
+                </Grid>
+            </Button>
 
             <Image Source="/ResourceFolder/ImageFolder/AdmImage.png"
                    Width="400"

@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Microp
         public MicrophoneEditPage(Microphone microphone)
         {
             InitializeComponent();
-            originalMicrophone = DBEntities.GetContext().Microphone
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalMicrophone = DBEntities.GetContext().Microphone
                 .FirstOrDefault(u => u.IdMicrophone == microphone.IdMicrophone);
             DataContext = microphone;
-            this.originalMicrophone.IdMicrophone = originalMicrophone.IdMicrophone;
+            this.originalMicrophone.IdMicrophone = microphone.IdMicrophone;
             SerialTB.Text = saveSerial = microphone.SerialNumberMicrophone;
         }
 
@@ -71,6 +72,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Microp
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.MicrophoneFolder.MicrophoneListPage());
         }
     }
 }

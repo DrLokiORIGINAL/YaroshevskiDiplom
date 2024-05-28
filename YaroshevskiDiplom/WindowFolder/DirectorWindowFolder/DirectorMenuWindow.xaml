@@ -48,22 +48,92 @@
                      materialDesign:Style="{StaticResource MenuIcon}"/>
 
             <Button x:Name="ListComp"
-                Style="{StaticResource MenuButton}"
-                Margin="15,314,865,370"
-                Click="ListComp_Click"
-                Content="Список&#xD;&#xA;компьютеров"/>
+                    Style="{StaticResource MenuButton}"
+                    Margin="15,159,865,536"
+                    Click="ListComp_Click">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="-14,-15,-15,-15" Grid.ColumnSpan="2">
+                        <Image Height="30" 
+                                Source="/ResourceFolder/ImageFolder/ComputerIcon.png"/>
+                        <TextBlock Text="Список компьютеров"
+                                   TextWrapping="Wrap" 
+                                   Width="78"
+                                   FontFamily="Arial"
+                                   Height="26"
+                                   Margin="3 10 10 10"/>
+                    </StackPanel>
+                </Grid>
+            </Button>
 
             <Button x:Name="ListPer"
                 Style="{StaticResource MenuButton}"                   
-                Margin="15,400,865,286"
-                Click="ListPer_Click"
-                Content="Список&#xD;&#xA;периферии"/>
+                Margin="15,219,865,476"
+                Click="ListPer_Click">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal"
+                                Height="48"
+                                Margin="-12,-14,-2,-15" Grid.ColumnSpan="2">
+                        <Image Height="30" 
+                               Source="/ResourceFolder/ImageFolder/WorkSpaceIcon.png"/>
+                        <TextBlock Text="Список раб. мест"
+                                   TextWrapping="Wrap" 
+                                   Width="78"
+                                   FontFamily="Arial"
+                                   Height="26"
+                                   Margin="3 10 10 10"/>
+                    </StackPanel>
+                </Grid>
+            </Button>
 
             <Button x:Name="ListStaff"
                     Style="{StaticResource MenuButton}"                   
-                    Margin="15,484,865,202"
-                    Click="ListStaff_Click"
-                    Content="Список&#xD;&#xA;сотрудников"/>
+                    Margin="15,279,865,416"
+                    Click="ListStaff_Click">
+                <Grid>
+                    <StackPanel Orientation="Horizontal"
+                                Height="48"
+                                Margin="-14,-14,-6,-15">
+                        <Image Height="30" 
+                               Source="/ResourceFolder/ImageFolder/StaffIcon.png" Width="30" 
+                               />
+                        <TextBlock Text="Список сотрудников"
+                                   TextWrapping="Wrap" 
+                                   Width="69"
+                                   FontFamily="Arial"
+                                   Height="26"
+                                   Margin="3 10 10 10"/>
+                    </StackPanel>
+                </Grid>
+            </Button>
+
+            <Button x:Name="ChangeUser"
+                    Style="{StaticResource MenuButton}"
+                    Margin="10,686,865,10"
+                    Click="ChangeUser_Click">
+                <Grid>
+                    <StackPanel Orientation="Horizontal"
+                        Height="48"
+                        Width="119" Margin="-6,-14,-24,-15">
+                        <Image Height="20"
+                       Source="/ResourceFolder/ImageFolder/Logout.png"/>
+                        <TextBlock Text="Сменить пользователя"
+                                   TextWrapping="Wrap" 
+                                   Width="85"
+                                   FontFamily="Arial"
+                                   Height="26"
+                                   Margin="3 10 10 10"/>
+                    </StackPanel>
+                </Grid>
+            </Button>
 
             <Image Source="/ResourceFolder/ImageFolder/DirImage.png"
                Width="400"

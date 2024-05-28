@@ -29,10 +29,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Comput
         public ComputerMouseEditPage(ComputerMouse computermouse)
         {
             InitializeComponent();
-            originalCM = DBEntities.GetContext().ComputerMouse
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalCM = DBEntities.GetContext().ComputerMouse
                 .FirstOrDefault(u => u.IdComputerMouse == computermouse.IdComputerMouse);
             DataContext = computermouse;
-            this.originalCM.IdComputerMouse = originalCM.IdComputerMouse;
+            this.originalCM.IdComputerMouse = computermouse.IdComputerMouse;
             SerialTB.Text = saveSerial = computermouse.SerialNumberComputerMouse;
         }
 
@@ -72,6 +73,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Comput
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.ComputerMouseFolder.ComputerMouseListPage());
         }
     }
 }

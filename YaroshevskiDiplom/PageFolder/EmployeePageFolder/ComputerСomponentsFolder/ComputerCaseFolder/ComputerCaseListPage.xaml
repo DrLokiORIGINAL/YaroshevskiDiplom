@@ -32,44 +32,48 @@
          VerticalAlignment="Center"
          MouseLeftButtonDown="Plus_MouseLeftButtonDown"/>
 
+        <Image Source="/ResourceFolder/ImageFolder/SearchIcon.png"
+  Height="20"
+  Width="20" Margin="121,22,7,22"/>
+
         <TextBox x:Name="SearchTb"
-     Style="{DynamicResource Search}"
-     TextChanged="SearchTb_TextChanged"
-     Grid.ColumnSpan="2"
-     Margin="0, 0, 0, 0"
-     Width="600"
-     Height="30"
-     Padding="4,0"
-     FontSize="18">
+Style="{DynamicResource Search}"
+TextChanged="SearchTb_TextChanged"
+Grid.ColumnSpan="2"
+        Margin="0, 0, 0, 0"
+Width="600"
+Height="30"
+Padding="4,0"
+FontSize="18">
 
             <TextBox.Template>
                 <ControlTemplate TargetType="TextBox">
                     <Grid>
                         <Border CornerRadius="5"
-Background="Transparent"
-BorderBrush="White"
-BorderThickness="2">
+           Background="Transparent"
+           BorderBrush="White"
+           BorderThickness="2">
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Label x:Name="SearchNx"
-   Content="Поиск"
-   Style="{DynamicResource NormalLabelStyle}"
-   Visibility="Collapsed"
-   Margin="0, 0, 0, 0"
-   FontSize="15"
-   Foreground="LightGray"/>
+              Content="Поиск"
+              Style="{DynamicResource NormalLabelStyle}"
+              Visibility="Collapsed"
+              Margin="0, 0, 0, 0"
+              FontSize="15"
+              Foreground="LightGray"
+                          Grid.Column="2"/>
 
                                 <ScrollViewer x:Name="PART_ContentHost"
-          Grid.ColumnSpan="3"
-          Margin="0, 0, 0, 0"
-          Focusable="False"
-          HorizontalScrollBarVisibility="Hidden"
-          VerticalScrollBarVisibility="Hidden"/>
+                     Focusable="False"
+                     HorizontalScrollBarVisibility="Hidden"
+                     VerticalScrollBarVisibility="Hidden" Grid.Column="2"/>
 
                             </Grid>
                         </Border>
@@ -77,8 +81,8 @@ BorderThickness="2">
                     <ControlTemplate.Triggers>
                         <Trigger Property="Text" Value="">
                             <Setter TargetName="SearchNx" 
-                Property="Visibility" 
-                Value="Visible"/>
+                       Property="Visibility" 
+                       Value="Visible"/>
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
@@ -89,6 +93,7 @@ BorderThickness="2">
                 </ControlTemplate>
             </TextBox.Template>
         </TextBox>
+        
         <DataGrid x:Name="ListCaseUDG" 
       IsReadOnly="True"
       FontFamily="Arial"

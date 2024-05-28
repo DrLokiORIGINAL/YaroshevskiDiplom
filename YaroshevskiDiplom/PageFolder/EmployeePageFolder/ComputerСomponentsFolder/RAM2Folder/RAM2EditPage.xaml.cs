@@ -27,10 +27,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public RAM2EditPage(RAM2 ram2)
         {
             InitializeComponent();
-            originalRAM2 = DBEntities.GetContext().RAM2
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalRAM2 = DBEntities.GetContext().RAM2
                 .FirstOrDefault(u => u.IdRAM2 == ram2.IdRAM2);
-            DataContext = originalRAM2;
-            this.originalRAM2.IdRAM2 = originalRAM2.IdRAM2;
+            DataContext = ram2;
+            this.originalRAM2.IdRAM2 = ram2.IdRAM2;
             RAMCb.ItemsSource = DBEntities.GetContext()
                 .RAM.ToList();
         }
@@ -51,6 +52,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
             {
                 MBClass.ErrorMB(ex);
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.RAM2Folder.RAM2ListPage());
         }
     }
 }

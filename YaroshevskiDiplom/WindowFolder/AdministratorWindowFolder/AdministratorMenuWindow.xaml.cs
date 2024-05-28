@@ -68,5 +68,14 @@ namespace YaroshevskiDiplom.WindowFolder.AdministratorWindowFolder
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void ChangeUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (MBClass.QestionMB("Вы действительно хотите выйти из аккаунта?"))
+            {
+                new AuthorizationWindow().Show();
+                Close();
+            }
+        }
     }
 }

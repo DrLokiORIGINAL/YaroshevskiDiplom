@@ -111,5 +111,10 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
                 }
             }
         }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.OfficeStorageFolder.OfficeStorageListPage());
+        }
     }
 }

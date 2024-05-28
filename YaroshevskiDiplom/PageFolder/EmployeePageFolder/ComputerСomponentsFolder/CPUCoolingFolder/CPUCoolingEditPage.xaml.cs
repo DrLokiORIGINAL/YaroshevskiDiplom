@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public CPUCoolingEditPage(CPUСooling cpucooling)
         {
             InitializeComponent();
-            originalCPUСooling = DBEntities.GetContext().CPUСooling
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalCPUСooling = DBEntities.GetContext().CPUСooling
                 .FirstOrDefault(u => u.IdCPUСooling == cpucooling.IdCPUСooling);
             DataContext = cpucooling;
-            this.originalCPUСooling.IdCPUСooling = originalCPUСooling.IdCPUСooling;
+            this.originalCPUСooling.IdCPUСooling = cpucooling.IdCPUСooling;
             TypeCb.ItemsSource = DBEntities.GetContext()
                 .TypeOfCPUСooling.ToList();
             SerialTB.Text = saveSerial = cpucooling.SerialNumberCPUCooling;
@@ -74,6 +75,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.CPUCoolingFolder.CPUCoolingListPage());
         }
     }
 }

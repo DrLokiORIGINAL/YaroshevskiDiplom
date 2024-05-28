@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +27,15 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputersFolder
     public partial class ComputersEditPage : Page
     {
         string saveSerial = "";
-        Computer computer = new Computer();
+        Computer Origcomputer = new Computer();
         public ComputersEditPage(Computer computer)
         {
             InitializeComponent();
+            DBEntities.nullContext();
+            DBEntities.nullContext(); Origcomputer = DBEntities.GetContext().Computer
+                .FirstOrDefault(u => u.IdComputer == computer.IdComputer);
             DataContext = computer;
-            this.computer.IdComputer = computer.IdComputer;
+            this.Origcomputer.IdComputer = computer.IdComputer;
             CPUCb.ItemsSource = DBEntities.GetContext()
                 .CPU.ToList();
             MotherBoardCb.ItemsSource = DBEntities.GetContext()
@@ -84,34 +88,34 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputersFolder
             {
                 try
                 {
-                    computer = DBEntities.GetContext().Computer
-                        .FirstOrDefault(u => u.IdComputer == computer.IdComputer);
-                    computer.IdCPU = Int32.Parse(
+                    Origcomputer = DBEntities.GetContext().Computer
+                        .FirstOrDefault(u => u.IdComputer == Origcomputer.IdComputer);
+                    Origcomputer.IdCPU = Int32.Parse(
                         CPUCb.SelectedValue.ToString());
-                    computer.IdMotherBoard = Int32.Parse(
+                    Origcomputer.IdMotherBoard = Int32.Parse(
                         MotherBoardCb.SelectedValue.ToString());
-                    computer.IdRAM1 = Int32.Parse(
+                    Origcomputer.IdRAM1 = Int32.Parse(
                         RAM1Cb.SelectedValue.ToString());
-                    computer.IdRAM2 = Int32.Parse(
+                    Origcomputer.IdRAM2 = Int32.Parse(
                         RAM2Cb.SelectedValue.ToString());
-                    computer.IdRAM3 = Int32.Parse(
+                    Origcomputer.IdRAM3 = Int32.Parse(
                         RAM3Cb.SelectedValue.ToString());
-                    computer.IdRAM4 = Int32.Parse(
+                    Origcomputer.IdRAM4 = Int32.Parse(
                         RAM4Cb.SelectedValue.ToString());
-                    computer.IdGPU = Int32.Parse(
+                    Origcomputer.IdGPU = Int32.Parse(
                         GPUCb.SelectedValue.ToString());
-                    computer.IdHDD = Int32.Parse(
+                    Origcomputer.IdHDD = Int32.Parse(
                         HDDCb.SelectedValue.ToString());
-                    computer.IdCPUСooling = Int32.Parse(
+                    Origcomputer.IdCPUСooling = Int32.Parse(
                         CPUСoolingCb.SelectedValue.ToString());
-                    computer.IdSSD = Int32.Parse(
+                    Origcomputer.IdSSD = Int32.Parse(
                         SSDCb.SelectedValue.ToString());
-                    computer.IdComputerCase = Int32.Parse(
+                    Origcomputer.IdComputerCase = Int32.Parse(
                         ComputerCaseCb.SelectedValue.ToString());
-                    computer.IdPowerSupply = Int32.Parse(
+                    Origcomputer.IdPowerSupply = Int32.Parse(
                         PowerSupplyCb.SelectedValue.ToString());
-                    computer.GuaranteeComputer = Convert.ToDateTime(DateDP.SelectedDate);
-                    computer.SerialNumberComputer = SerialNumberComputerTB.Text;
+                    Origcomputer.GuaranteeComputer = Convert.ToDateTime(DateDP.SelectedDate);
+                    Origcomputer.SerialNumberComputer = SerialNumberComputerTB.Text;
                     DBEntities.GetContext().SaveChanges();
                     MBClass.InformationMB("Данные успешно отредактированы");
                     NavigationService.Navigate(new ComputersListPage());
@@ -122,6 +126,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputersFolder
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputersFolder.ComputersListPage());
         }
     }
 }

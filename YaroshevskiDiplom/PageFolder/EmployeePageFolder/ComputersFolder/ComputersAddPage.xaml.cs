@@ -157,5 +157,10 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputersFolder
                 }
             }
         }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputersFolder.ComputersListPage());
+        }
     }
 }

@@ -70,5 +70,10 @@ namespace YaroshevskiDiplom.PageFolder.AdministratorPageFolder
             }
             }
         }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.AdministratorPageFolder.AdministratorListPage());
+        }
     }
 }

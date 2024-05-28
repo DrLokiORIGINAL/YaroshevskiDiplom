@@ -24,12 +24,16 @@ namespace YaroshevskiDiplom.PageFolder.AdministratorPageFolder
     public partial class AdministratorEditPage : Page
     {
         string saveLogin = "";
-        User user = new User();
+        private User origuser;
+
         public AdministratorEditPage(User user)
         {
             InitializeComponent();
+            DBEntities.nullContext();
+            DBEntities.nullContext(); origuser = DBEntities.GetContext().User
+                .FirstOrDefault(u => u.IdUser == user.IdUser);
             DataContext = user;
-            this.user.IdUser = user.IdUser;
+            this.origuser.IdUser = user.IdUser;
             RoleCb.ItemsSource = DBEntities.GetContext()
                 .Role.ToList();
             LoginTB.Text = saveLogin = user.LoginUser;
@@ -49,11 +53,11 @@ namespace YaroshevskiDiplom.PageFolder.AdministratorPageFolder
             {
             try
                 {
-                    user = DBEntities.GetContext().User
-                        .FirstOrDefault(u => u.IdUser == user.IdUser);
-                    user.LoginUser = LoginTB.Text;
-                    user.PasswordUser = PasswordTB.Text;
-                    user.IdRole = Int32.Parse(
+                    origuser = DBEntities.GetContext().User
+                        .FirstOrDefault(u => u.IdUser == origuser.IdUser);
+                    origuser.LoginUser = LoginTB.Text;
+                    origuser.PasswordUser = PasswordTB.Text;
+                    origuser.IdRole = Int32.Parse(
                         RoleCb.SelectedValue.ToString());
                     DBEntities.GetContext().SaveChanges();
                     MBClass.InformationMB("Данные успешно отредактированы");
@@ -64,6 +68,11 @@ namespace YaroshevskiDiplom.PageFolder.AdministratorPageFolder
                 MBClass.ErrorMB(ex);
             }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.AdministratorPageFolder.AdministratorListPage());
         }
     }
 }

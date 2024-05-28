@@ -29,10 +29,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Printe
         public PrinterEditPage(Printer printer)
         {
             InitializeComponent();
-            originalPrinter = DBEntities.GetContext().Printer
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalPrinter = DBEntities.GetContext().Printer
                 .FirstOrDefault(u => u.IdPrinter == printer.IdPrinter);
             DataContext = printer;
-            this.originalPrinter.IdPrinter = originalPrinter.IdPrinter;
+            this.originalPrinter.IdPrinter = printer.IdPrinter;
             SerialTB.Text = saveSerial = printer.SerialNumberPrinter;
         }
 
@@ -72,6 +73,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Printe
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.PrinterFolder.PrinterListPage());
         }
     }
 }

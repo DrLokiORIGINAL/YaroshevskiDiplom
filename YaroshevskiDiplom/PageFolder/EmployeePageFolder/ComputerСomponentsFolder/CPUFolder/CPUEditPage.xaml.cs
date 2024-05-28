@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
         public CPUEditPage(CPU cpu)
         {
             InitializeComponent();
-            originalCPU = DBEntities.GetContext().CPU
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalCPU = DBEntities.GetContext().CPU
                 .FirstOrDefault(u => u.IdCPU == cpu.IdCPU);
             DataContext = cpu;
-            this.originalCPU.IdCPU = originalCPU.IdCPU;
+            this.originalCPU.IdCPU = cpu.IdCPU;
             SerialTB.Text = saveSerial = cpu.SerialNumberCPU;
         }
 
@@ -71,6 +72,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputerСomponentsFol
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.ComputerСomponentsFolder.CPUFolder.CPUListPage());
         }
     }
 }

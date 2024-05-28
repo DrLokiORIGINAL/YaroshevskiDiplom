@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Headph
         public HeadphonesEditPage(Headphones headphones)
         {
             InitializeComponent();
-            originalHeadphones = DBEntities.GetContext().Headphones
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalHeadphones = DBEntities.GetContext().Headphones
                 .FirstOrDefault(u => u.IdHeadphones == headphones.IdHeadphones);
             DataContext = headphones;
-            this.originalHeadphones.IdHeadphones = originalHeadphones.IdHeadphones;
+            this.originalHeadphones.IdHeadphones = headphones.IdHeadphones;
             SerialTB.Text = saveSerial = headphones.SerialNumberHeadphones;
         }
 
@@ -63,7 +64,7 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Headph
                     originalHeadphones.GuaranteeHeadphones = Convert.ToDateTime(DateDP.SelectedDate);
                     DBEntities.GetContext().SaveChanges();
                     MBClass.InformationMB("Данные успешно отредактированы");
-                    NavigationService.Navigate(new GarnitureListPage());
+                    NavigationService.Navigate(new HeadphonesListPage());
                 }
                 catch (Exception ex)
                 {
@@ -71,6 +72,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Headph
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.HeadphonesFolder.HeadphonesListPage());
         }
     }
 }

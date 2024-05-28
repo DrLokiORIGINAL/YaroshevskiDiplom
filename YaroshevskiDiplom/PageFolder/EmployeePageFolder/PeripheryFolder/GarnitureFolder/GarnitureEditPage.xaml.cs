@@ -28,10 +28,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Garnit
         public GarnitureEditPage(Garniture garniture)
         {
             InitializeComponent();
-            originalGarniture = DBEntities.GetContext().Garniture
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalGarniture = DBEntities.GetContext().Garniture
                 .FirstOrDefault(u => u.IdGarniture == garniture.IdGarniture);
             DataContext = garniture;
-            this.originalGarniture.IdGarniture = originalGarniture.IdGarniture;
+            this.originalGarniture.IdGarniture = garniture.IdGarniture;
             SerialTB.Text = saveSerial = garniture.SerialNumberGarniture;
         }
 
@@ -71,6 +72,11 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.PeripheryFolder.Garnit
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.EmployeePageFolder.PeripheryFolder.GarnitureFolder.GarnitureListPage());
         }
     }
 }

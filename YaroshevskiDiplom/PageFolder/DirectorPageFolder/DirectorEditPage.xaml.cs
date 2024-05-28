@@ -27,10 +27,11 @@ namespace YaroshevskiDiplom.PageFolder.DirectorPageFolder
         public DirectorEditPage(Staff staff)
         {
             InitializeComponent();
-            originalStaff = DBEntities.GetContext().Staff
+            DBEntities.nullContext();
+            DBEntities.nullContext(); originalStaff = DBEntities.GetContext().Staff
                 .FirstOrDefault(u => u.IdStaff == staff.IdStaff);
             DataContext = staff;
-            this.originalStaff.IdStaff = originalStaff.IdStaff;
+            this.originalStaff.IdStaff = staff.IdStaff;
             UserCb.ItemsSource = DBEntities.GetContext()
                 .User.ToList();
         }
@@ -90,6 +91,11 @@ namespace YaroshevskiDiplom.PageFolder.DirectorPageFolder
                     throw;
                 }
             }
+        }
+
+        private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.DirectorPageFolder.DirectorListPage());
         }
     }
 }

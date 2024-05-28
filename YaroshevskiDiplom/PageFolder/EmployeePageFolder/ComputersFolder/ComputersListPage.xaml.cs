@@ -54,17 +54,25 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputersFolder
             }
             else
             {
+                try
+                {
+
+                
                 if (MBClass.QestionMB("Удалить " +
                     $"компьютер с серийным номером " +
                     $"{computer.SerialNumberComputer}?"))
-                {
-                    DBEntities.GetContext().Computer
-                        .Remove(ListComputerDG.SelectedItem as Computer);
-                    DBEntities.GetContext().SaveChanges();
-
+                    {
+                        DBEntities.GetContext().Computer
+                            .Remove(ListComputerDG.SelectedItem as Computer);
+                        DBEntities.GetContext().SaveChanges();
                     MBClass.InformationMB("Компьютер удален");
-                    ListComputerDG.ItemsSource = DBEntities.GetContext()
-                        .Computer.ToList().OrderBy(u => u.IdComputer);
+                        ListComputerDG.ItemsSource = DBEntities.GetContext()
+                            .Computer.ToList().OrderBy(u => u.IdComputer);
+                }
+                }
+                catch
+                {
+                    MBClass.InformationMB("В данный момент компьютер используется");
                 }
             }
         }
