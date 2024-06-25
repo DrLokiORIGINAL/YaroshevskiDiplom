@@ -76,7 +76,7 @@
                       Grid.Row="2"
                       Grid.Column="0"
                       FontSize="18"
-                      materialDesign:HintAssist.Hint="Выберите ОЗУ в первый слот*"
+                      materialDesign:HintAssist.Hint="Выберите ОЗУ в первый слот"
                       SelectedValuePath="IdRAM1"
                       FontFamily="Arial"
                       Height="50"

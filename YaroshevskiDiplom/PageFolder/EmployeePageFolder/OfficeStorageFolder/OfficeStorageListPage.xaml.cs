@@ -80,20 +80,20 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
             OfficeStorage officestorage = ListStorageDG.SelectedItem as OfficeStorage;
             if (ListStorageDG.SelectedItem == null)
             {
-                MBClass.ErrorMB("Выберите строку" +
+                MBClass.ErrorMB("Выберите рабочее место" +
                     " для удаления");
             }
             else
             {
                 if (MBClass.QestionMB("Удалить " +
-                    $"строку под номером " +
+                    $"рабочее место под номером " +
                     $"{officestorage.IdOfficeStorage}?"))
                 {
                     DBEntities.GetContext().OfficeStorage
                         .Remove(ListStorageDG.SelectedItem as OfficeStorage);
                     DBEntities.GetContext().SaveChanges();
 
-                    MBClass.InformationMB("Строка удалена");
+                    MBClass.InformationMB("Рабочее место удалено");
                     ListStorageDG.ItemsSource = DBEntities.GetContext()
                         .OfficeStorage.ToList().OrderBy(u => u.IdOfficeStorage);
                 }
@@ -105,7 +105,7 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
             if (ListStorageDG.SelectedItem == null)
             {
                 MBClass.ErrorMB("Выберите " +
-                    "строку для редактирования");
+                    "рабочее место для редактирования");
             }
             else
             {

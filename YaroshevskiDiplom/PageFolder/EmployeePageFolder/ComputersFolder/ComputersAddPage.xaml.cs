@@ -65,7 +65,7 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputersFolder
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(CPUCb.Text))
+            else if (string.IsNullOrWhiteSpace(CPUCb.Text))
             {
                 MBClass.ErrorMB("Пожалуйста, выберите процессор");
                 CPUCb.Focus();
@@ -129,23 +129,22 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.ComputersFolder
             {
                 try
                 {
-                    DBEntities.GetContext().Computer.Add(new Computer()
-                    {
-                        IdCPU = Int32.Parse(CPUCb.SelectedValue.ToString()),
-                        IdMotherBoard = Int32.Parse(MotherBoardCb.SelectedValue.ToString()),
-                        IdRAM1 = Int32.Parse(RAM1Cb.SelectedValue.ToString()),
-                        IdRAM2 = Int32.Parse(RAM2Cb.SelectedValue.ToString()),
-                        IdRAM3 = Int32.Parse(RAM3Cb.SelectedValue.ToString()),
-                        IdRAM4 = Int32.Parse(RAM4Cb.SelectedValue.ToString()),
-                        IdGPU = Int32.Parse(GPUCb.SelectedValue.ToString()),
-                        IdHDD = Int32.Parse(HDDCb.SelectedValue.ToString()),
-                        IdCPUСooling = Int32.Parse(CPUСoolingCb.SelectedValue.ToString()),
-                        IdSSD = Int32.Parse(SSDCb.SelectedValue.ToString()),
-                        IdComputerCase = Int32.Parse(ComputerCaseCb.SelectedValue.ToString()),
-                        IdPowerSupply = Int32.Parse(PowerSupplyCb.SelectedValue.ToString()),
-                        GuaranteeComputer = Convert.ToDateTime(DateDP.SelectedDate),
-                        SerialNumberComputer = SerialNumberComputerTB.Text,
-                    });
+                    Computer computer = new Computer();
+                    DBEntities.GetContext().Computer.Add(computer);
+                    computer.IdCPU = Int32.Parse(CPUCb.SelectedValue.ToString());
+                    computer.IdMotherBoard = Int32.Parse(MotherBoardCb.SelectedValue.ToString());
+                    computer.IdRAM1 = Int32.Parse(RAM1Cb.SelectedValue.ToString());
+                    computer.IdRAM2 = RAM2Cb.SelectedValue == null ? null : (int?)Convert.ToInt32(RAM2Cb.SelectedValue);
+                    computer.IdRAM3 = RAM3Cb.SelectedValue == null ? null : (int?)Convert.ToInt32(RAM3Cb.SelectedValue);
+                    computer.IdRAM4 = RAM4Cb.SelectedValue == null ? null : (int?)Convert.ToInt32(RAM4Cb.SelectedValue);
+                    computer.IdGPU = Int32.Parse(GPUCb.SelectedValue.ToString());
+                    computer.IdHDD = Int32.Parse(HDDCb.SelectedValue.ToString());
+                    computer.IdCPUСooling = Int32.Parse(CPUСoolingCb.SelectedValue.ToString());
+                    computer.IdSSD = SSDCb.SelectedValue == null ? null : (int?)Convert.ToInt32(SSDCb.SelectedValue);
+                    computer.IdComputerCase = Int32.Parse(ComputerCaseCb.SelectedValue.ToString());
+                    computer.IdPowerSupply = Int32.Parse(PowerSupplyCb.SelectedValue.ToString());
+                    computer.GuaranteeComputer = Convert.ToDateTime(DateDP.SelectedDate);
+                    computer.SerialNumberComputer = SerialNumberComputerTB.Text;
                     DBEntities.GetContext().SaveChanges();
                     MBClass.InformationMB("Успешно");
                     NavigationService.Navigate(new ComputersListPage());

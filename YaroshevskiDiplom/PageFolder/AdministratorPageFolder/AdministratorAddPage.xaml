@@ -77,7 +77,7 @@
 
             <Button x:Name="SaveBtn"
                 Style="{StaticResource AuthButton}"
-                Content="Сохранить пользователя"
+                Content="Добавить пользователя"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 Click="SaveBtn_Click" 

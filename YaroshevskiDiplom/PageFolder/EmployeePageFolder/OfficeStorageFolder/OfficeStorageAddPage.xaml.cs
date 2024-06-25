@@ -81,25 +81,25 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
                 MBClass.ErrorMB("Пожалуйста, выберете монитор");
                 MonitorCb.Focus();
             }
-
+            
             else
             {
                 try
                 {
-                    DBEntities.GetContext().OfficeStorage.Add(new OfficeStorage()
-                    {
-                        IdComputer = Int32.Parse(ComputerCb.SelectedValue.ToString()),
-                        IdStaff = Int32.Parse(StaffCb.SelectedValue.ToString()),
-                        IdKeyboard = Int32.Parse(KeyboardCb.SelectedValue.ToString()),
-                        IdComputerMouse = Int32.Parse(ComputerMouseCb.SelectedValue.ToString()),
-                        IdScanner = Int32.Parse(ScannerCb.SelectedValue.ToString()),
-                        IdMicrophone = Int32.Parse(MicrophoneCb.SelectedValue.ToString()),
-                        IdWebCamera = Int32.Parse(WebCameraCb.SelectedValue.ToString()),
-                        IdMonitor = Int32.Parse(MonitorCb.SelectedValue.ToString()),
-                        IdPrinter = Int32.Parse(PrinterCb.SelectedValue.ToString()),
-                        IdHeadphones = Int32.Parse(HeadphonesCb.SelectedValue.ToString()),
-                        IdGarniture = Int32.Parse(GarnitureCb.SelectedValue.ToString()),
-                    });
+                    OfficeStorage officestorage = new OfficeStorage();
+                    DBEntities.GetContext().OfficeStorage.Add(officestorage);
+
+                    officestorage.IdComputer = Int32.Parse(ComputerCb.SelectedValue.ToString());
+                    officestorage.IdStaff = Int32.Parse(StaffCb.SelectedValue.ToString());
+                    officestorage.IdKeyboard = Int32.Parse(KeyboardCb.SelectedValue.ToString());
+                    officestorage.IdComputerMouse = Int32.Parse(ComputerMouseCb.SelectedValue.ToString());
+                    officestorage.IdScanner = ScannerCb.SelectedValue == null ? null : (int?)Convert.ToInt32(ScannerCb.SelectedValue);
+                    officestorage.IdMicrophone = MicrophoneCb.SelectedValue == null ? null : (int?)Convert.ToInt32(MicrophoneCb.SelectedValue);
+                    officestorage.IdWebCamera = WebCameraCb.SelectedValue == null ? null : (int?)Convert.ToInt32(WebCameraCb.SelectedValue);
+                    officestorage.IdMonitor = Int32.Parse(MonitorCb.SelectedValue.ToString());
+                    officestorage.IdPrinter = PrinterCb.SelectedValue == null ? null : (int?)Convert.ToInt32(PrinterCb.SelectedValue);
+                    officestorage.IdHeadphones = HeadphonesCb.SelectedValue == null ? null : (int?)Convert.ToInt32(HeadphonesCb.SelectedValue);
+                    officestorage.IdGarniture = GarnitureCb.SelectedValue == null ? null : (int?)Convert.ToInt32(GarnitureCb.SelectedValue);
                     DBEntities.GetContext().SaveChanges();
                     MBClass.InformationMB("Успешно");
                     NavigationService.Navigate(new OfficeStorageListPage());
@@ -107,7 +107,6 @@ namespace YaroshevskiDiplom.PageFolder.EmployeePageFolder.OfficeStorageFolder
                 catch (Exception ex)
                 {
                     MBClass.ErrorMB(ex);
-                    throw;
                 }
             }
         }

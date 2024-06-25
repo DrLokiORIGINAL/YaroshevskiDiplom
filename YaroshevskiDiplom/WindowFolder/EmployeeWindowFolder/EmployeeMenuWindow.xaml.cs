@@ -27,7 +27,7 @@ namespace YaroshevskiDiplom.WindowFolder.EmployeeWindowFolder
         public EmployeeMenuWindow()
         {
             InitializeComponent();
-            MaiFrame.Navigate(new PageFolder.EmployeePageFolder.ComputersFolder.ComputersListPage());
+            MaiFrame.Navigate(new PageFolder.EmployeePageFolder.OfficeStorageFolder.OfficeStorageListPage());
         }
 
         private void Window_StateChanged(object sender, EventArgs e)

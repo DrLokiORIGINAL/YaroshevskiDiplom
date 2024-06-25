@@ -121,11 +121,6 @@
             </DataGrid.ContextMenu>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№ п/п" 
-                                    Binding="{Binding IdComputer}"
-                                    Width="auto"
-                                    Foreground="White"/>
-
                 <DataGridTextColumn Header="Серийный номер"
                                     Binding="{Binding SerialNumberComputer}"
                                     Width="auto"
@@ -147,17 +142,17 @@
                                     Foreground="White"/>
 
                 <DataGridTextColumn Header="Второй слот RAM" 
-                                    Binding="{Binding RAM2.RAM.NameRAM}"
+                                    Binding="{Binding RAM2.RAM.NameRAM, FallbackValue= -}"
                                     Width="auto"
                                     Foreground="White"/>
 
                 <DataGridTextColumn Header="Третий слот RAM" 
-                                    Binding="{Binding RAM3.RAM.NameRAM}"
+                                    Binding="{Binding RAM3.RAM.NameRAM, FallbackValue= -}"
                                     Width="auto"
                                     Foreground="White"/>
 
                 <DataGridTextColumn Header="Четвертый слот RAM" 
-                                    Binding="{Binding RAM4.RAM.NameRAM}"
+                                    Binding="{Binding RAM4.RAM.NameRAM, FallbackValue= -}"
                                     Width="auto"
                                     Foreground="White"/>
 
@@ -177,7 +172,7 @@
                                     Foreground="White"/>
 
                 <DataGridTextColumn Header="Твердотельный накопитель"
-                                    Binding="{Binding SSD.NameSSD}"
+                                    Binding="{Binding SSD.NameSSD, FallbackValue= -}"
                                     Width="auto"
                                     Foreground="White"/>
 

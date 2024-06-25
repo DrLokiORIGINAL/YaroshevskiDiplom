@@ -147,17 +147,17 @@ FontSize="18">
                                 Foreground="White"/>
 
                 <DataGridTextColumn Header="Сканер*" 
-                                Binding="{Binding Scanner.NameScanner}"
+                                Binding="{Binding Scanner.NameScanner, FallbackValue= -}"
                                 Width="auto"
                                 Foreground="White"/>
 
                 <DataGridTextColumn Header="Микрофон*" 
-                                Binding="{Binding Microphone.NameMicrophone}"
+                                Binding="{Binding Microphone.NameMicrophone, FallbackValue= -}"
                                 Width="auto"
                                 Foreground="White"/>
 
                 <DataGridTextColumn Header="Вебкамера*" 
-                                Binding="{Binding WebCamera.NameWebCamera}"
+                                Binding="{Binding WebCamera.NameWebCamera, FallbackValue= -}"
                                 Width="auto"
                                 Foreground="White"/>
 
@@ -167,17 +167,17 @@ FontSize="18">
                                 Foreground="White"/>
 
                 <DataGridTextColumn Header="Принтер*" 
-                                Binding="{Binding Printer.NamePrinter}"
+                                Binding="{Binding Printer.NamePrinter, FallbackValue= -}"
                                 Width="auto"
                                 Foreground="White"/>
 
                 <DataGridTextColumn Header="Наушники*"
-                                Binding="{Binding Headphones.NameHeadphones}"
+                                Binding="{Binding Headphones.NameHeadphones, FallbackValue= -}"
                                 Width="auto"
                                 Foreground="White"/>
 
                 <DataGridTextColumn Header="Гарнитура*"
-                                Binding="{Binding Garniture.NameGarniture}"
+                                Binding="{Binding Garniture.NameGarniture, FallbackValue= -}"
                                 Width="auto"
                                 Foreground="White"/>
             </DataGrid.Columns>
